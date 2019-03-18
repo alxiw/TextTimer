@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.PersistableBundle
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,13 +12,16 @@ class MainActivity : AppCompatActivity() {
 
     private var loadTimerCount: Long = 0L
 
+    private lateinit var timer: CountDownTimer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        object: CountDownTimer(maxLoadTimerCount, loadTimerCountDownInterval) {
+        timer = object: CountDownTimer(maxLoadTimerCount, loadTimerCountDownInterval) {
             override fun onFinish() {
                 val intent = Intent(this@MainActivity, TimerActivity::class.java)
+                this@MainActivity.onStop()
                 this@MainActivity.finish()
                 startActivity(intent)
             }
@@ -27,19 +29,32 @@ class MainActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
                 loadTimerCount++
             }
+        }
 
-        }.start()
+        if (savedInstanceState != null) {
+            loadTimerCount = savedInstanceState.getLong(this.getString(R.string.load_timer_count), 0L)
+        }
+
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+    override fun onResume() {
+        super.onResume()
+        if (loadTimerCount < maxLoadTimerCount) {
+            timer.start()
+        } else{
+            timer.onFinish()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
         outState?.putLong(this.getString(R.string.load_timer_count), loadTimerCount)
-        super.onSaveInstanceState(outState, outPersistentState)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         if (savedInstanceState != null) {
-            loadTimerCount = savedInstanceState.getLong(this.getString(R.string.load_timer_count))
+            loadTimerCount = savedInstanceState.getLong(this.getString(R.string.load_timer_count), 0L)
         }
     }
 }

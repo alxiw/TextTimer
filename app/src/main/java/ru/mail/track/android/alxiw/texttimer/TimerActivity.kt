@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_timer.*
 import ru.mail.track.android.alxiw.texttimer.tools.CountTextFormatter
+import android.content.Intent
+
+
 
 class TimerActivity : AppCompatActivity() {
 
@@ -36,7 +39,9 @@ class TimerActivity : AppCompatActivity() {
         button.setOnClickListener {
             when {
                 button.text == startButtonText -> {
-                    timerCount = 0L
+                    if (timerCount == maxTimerCount / 1000) {
+                        timerCount = 0L
+                    }
                     timer.start()
                     buttonText = stopButtonText
                     button.text = buttonText
@@ -52,13 +57,18 @@ class TimerActivity : AppCompatActivity() {
         timer = object: CountDownTimer(maxTimerCount, timerCountDownInterval) {
 
             override fun onFinish() {
-                buttonText = stopButtonText
+                timer.cancel()
+                buttonText = startButtonText
                 button.text = buttonText
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                timerCount++
-                textView.text = timeCountFormatter.formatCountToText(timerCount.toInt())
+                if (timerCount >= maxTimerCount / 1000) {
+                    timer.onFinish()
+                } else {
+                    timerCount++
+                    textView.text = timeCountFormatter.formatCountToText(timerCount.toInt())
+                }
             }
         }
 
@@ -71,6 +81,13 @@ class TimerActivity : AppCompatActivity() {
             buttonText = startButtonText
             button.text = buttonText
         }
+    }
+
+    override fun onBackPressed() {
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
     }
 
     override fun onResume() {

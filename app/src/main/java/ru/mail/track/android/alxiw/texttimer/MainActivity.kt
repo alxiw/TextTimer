@@ -21,40 +21,23 @@ class MainActivity : AppCompatActivity() {
         timer = object: CountDownTimer(maxLoadTimerCount, loadTimerCountDownInterval) {
             override fun onFinish() {
                 val intent = Intent(this@MainActivity, TimerActivity::class.java)
-                this@MainActivity.onStop()
-                this@MainActivity.finish()
                 startActivity(intent)
+                finish()
             }
 
             override fun onTick(millisUntilFinished: Long) {
                 loadTimerCount++
             }
         }
-
-        if (savedInstanceState != null) {
-            loadTimerCount = savedInstanceState.getLong(this.getString(R.string.load_timer_count), 0L)
-        }
-
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (loadTimerCount < maxLoadTimerCount) {
-            timer.start()
-        } else{
-            timer.onFinish()
-        }
+    override fun onStart() {
+        super.onStart()
+        timer.start()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putLong(this.getString(R.string.load_timer_count), loadTimerCount)
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        if (savedInstanceState != null) {
-            loadTimerCount = savedInstanceState.getLong(this.getString(R.string.load_timer_count), 0L)
-        }
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
     }
 }

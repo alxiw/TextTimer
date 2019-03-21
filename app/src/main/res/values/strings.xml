@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Text Timer</string>
 
-    <string name="load_timer_count">main_timer</string>
     <string name="timer_count">timerTime</string>
     <string name="button_text">buttonCapture</string>
 

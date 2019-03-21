@@ -1,19 +1,16 @@
 package ru.mail.track.android.alxiw.texttimer.tools
 
-import android.content.res.Resources
-
-class CountTextFormatter(resources: Resources) {
+class CountTextFormatter(
+    private val units: Array<String>,
+    private val teens: Array<String>,
+    private val tens: Array<String>,
+    private val hundreds: Array<String>,
+    private val thousands: Array<String>
+) {
 
     private val separator = " "
 
-    private val units = resources.getStringArray(ru.mail.track.android.alxiw.texttimer.R.array.units)
-    private val teens = resources.getStringArray(ru.mail.track.android.alxiw.texttimer.R.array.teens)
-    private val tens = resources.getStringArray(ru.mail.track.android.alxiw.texttimer.R.array.tens)
-    private val hundreds = resources.getStringArray(ru.mail.track.android.alxiw.texttimer.R.array.hundreds)
-    private val thousands = resources.getStringArray(ru.mail.track.android.alxiw.texttimer.R.array.thousands)
-
     fun formatCountToText(timerCount: Int): String {
-
         var result = ""
 
         if (timerCount > 1000) {
@@ -45,5 +42,4 @@ class CountTextFormatter(resources: Resources) {
 
         return result
     }
-
 }

@@ -6,11 +6,9 @@ import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_timer.*
+import kotlinx.android.synthetic.main.activity_timer.button
+import kotlinx.android.synthetic.main.activity_timer.textView
 import ru.mail.track.android.alxiw.texttimer.tools.CountTextFormatter
-import android.content.Intent
-
-
 
 class TimerActivity : AppCompatActivity() {
 
@@ -20,18 +18,23 @@ class TimerActivity : AppCompatActivity() {
     private val maxTimerCount = 1_000_000L
     private val timerCountDownInterval: Long = 1_000L
 
-    private lateinit var timeCountFormatter: CountTextFormatter
-
     private var timerCount: Long = 0L
     private var buttonText: String = ""
 
+    private lateinit var timeCountFormatter: CountTextFormatter
     private lateinit var timer: CountDownTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
-        timeCountFormatter = CountTextFormatter(resources)
+        timeCountFormatter = CountTextFormatter(
+            resources.getStringArray(R.array.units),
+            resources.getStringArray(R.array.teens),
+            resources.getStringArray(R.array.tens),
+            resources.getStringArray(R.array.hundreds),
+            resources.getStringArray(R.array.thousands)
+            )
 
         val button = this.findViewById<View>(R.id.button) as Button
         val textView = this.findViewById<View>(R.id.textView) as TextView
@@ -39,7 +42,7 @@ class TimerActivity : AppCompatActivity() {
         button.setOnClickListener {
             when {
                 button.text == startButtonText -> {
-                    if (timerCount == maxTimerCount / 1000) {
+                    if (timerCount == maxTimerCount / timerCountDownInterval) {
                         timerCount = 0L
                     }
                     timer.start()
@@ -55,7 +58,6 @@ class TimerActivity : AppCompatActivity() {
         }
 
         timer = object: CountDownTimer(maxTimerCount, timerCountDownInterval) {
-
             override fun onFinish() {
                 timer.cancel()
                 buttonText = startButtonText
@@ -63,7 +65,7 @@ class TimerActivity : AppCompatActivity() {
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                if (timerCount >= maxTimerCount / 1000) {
+                if (timerCount >= maxTimerCount / timerCountDownInterval) {
                     timer.onFinish()
                 } else {
                     timerCount++
@@ -74,7 +76,7 @@ class TimerActivity : AppCompatActivity() {
 
         if (savedInstanceState != null) {
             timerCount = savedInstanceState.getLong(this.getString(R.string.timer_count), 0L)
-            textView.text = CountTextFormatter(resources).formatCountToText(timerCount.toInt())
+            textView.text = timeCountFormatter.formatCountToText(timerCount.toInt())
             buttonText = savedInstanceState.getString(this.getString(R.string.button_text), startButtonText)
             button.text = buttonText
         } else {
@@ -83,15 +85,8 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        val a = Intent(Intent.ACTION_MAIN)
-        a.addCategory(Intent.CATEGORY_HOME)
-        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(a)
-    }
-
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         textView.text = timeCountFormatter.formatCountToText(timerCount.toInt())
         button.let {
             if (it.text == stopButtonText) {
@@ -100,14 +95,14 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
+    }
+
     override fun onSaveInstanceState(outState: Bundle?) {
         outState?.putLong(this.getString(R.string.timer_count), timerCount)
         outState?.putString(this.getString(R.string.button_text), buttonText)
         super.onSaveInstanceState(outState)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        timer.cancel()
     }
 }

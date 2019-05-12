@@ -2,7 +2,7 @@
 
 <img align="right" width="120" src="img/sample-icon.png">
 
-The project is a simple Android application with two activities developed in [Kotlin](https://github.com/JetBrains/kotlin) as a training task at the very start of the Android App Development Course by the [Technotrack](https://track.mail.ru/) educational project. The application represents a stopwatch which counts upwards from zero for measuring elapsed time showing the time in the way how we pronounce it, e.g. _forty four_ for 44. Depending on your system language, the interface is available in English or in Russian.
+The project is a simple Android application with two activities developed in [Kotlin](https://github.com/JetBrains/kotlin) as a training task at the very start of the Android App Development Course by the [Technotrack](https://track.mail.ru/) educational project. The application represents a stopwatch, which counts upwards from zero for measuring elapsed time, showing the time in the way how we pronounce it, e.g. _forty four_ for 44. The interface is available in English and in Russian. Appropriate language will be applied, depending on your system language.
 
 ## Usage
 
@@ -14,13 +14,13 @@ When you stop the timer, you can continue from the point of stopping by clicking
 
 ## Building
 
-Run [Gradle](https://github.com/gradle/gradle) from the ßroot directory of the project to build
+Run [Gradle](https://github.com/gradle/gradle) from the root directory of the project to build it.
 
 ``` bash
 ./gradlew build
 ```
 
-After building is done, there will be two directories in app/build/outputs/apk with apk files for debug and release
+After completion there will be two directories in app/build/outputs/apk with apk files for debug and release.
 
 ## License
 

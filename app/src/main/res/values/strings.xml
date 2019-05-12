@@ -1,54 +1,56 @@
 <resources>
     <string name="app_name">Text Timer</string>
 
-    <string name="timer_count">timerTime</string>
-    <string name="button_text">buttonCapture</string>
+    <string name="timer_count" translatable="false">timer-count</string>
+    <string name="button_text" translatable="false">button-text</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
 
     <string-array name="units">
-        <item>один</item>
-        <item>два</item>
-        <item>три</item>
-        <item>четыре</item>
-        <item>пять</item>
-        <item>шесть</item>
-        <item>семь</item>
-        <item>восемь</item>
-        <item>девять</item>
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+        <item>seven</item>
+        <item>eight</item>
+        <item>nine</item>
     </string-array>
     <string-array name="teens">
-        <item>одиннадцать</item>
-        <item>двенадцать</item>
-        <item>тринадцать</item>
-        <item>четырнадцать</item>
-        <item>пятнадцать</item>
-        <item>шестнадцать</item>
-        <item>семнадцать</item>
-        <item>восемнадцать</item>
-        <item>девятнадцать</item>
+        <item>eleven</item>
+        <item>twelve</item>
+        <item>thirteen</item>
+        <item>fourteen</item>
+        <item>fifteen</item>
+        <item>sixteen</item>
+        <item>seventeen</item>
+        <item>eighteen</item>
+        <item>nineteen</item>
     </string-array>
     <string-array name="tens">
-        <item>десять</item>
-        <item>двадцать</item>
-        <item>тридцать</item>
-        <item>сорок</item>
-        <item>пятьдесят</item>
-        <item>шестьдесят</item>
-        <item>семьдесят</item>
-        <item>восемьдесят</item>
-        <item>девяносто</item>
+        <item>ten</item>
+        <item>twenty</item>
+        <item>thirty</item>
+        <item>forty</item>
+        <item>fifty</item>
+        <item>sixty</item>
+        <item>seventy</item>
+        <item>eighty</item>
+        <item>ninety</item>
     </string-array>
     <string-array name="hundreds">
-        <item>сто</item>
-        <item>двести</item>
-        <item>триста</item>
-        <item>четыреста</item>
-        <item>пятьсот</item>
-        <item>шестьсот</item>
-        <item>семьсот</item>
-        <item>восемьсот</item>
-        <item>девятьсот</item>
+        <item>one hundred</item>
+        <item>two hundred</item>
+        <item>three hundred</item>
+        <item>four hundred</item>
+        <item>five hundred</item>
+        <item>six hundred</item>
+        <item>seven hundred</item>
+        <item>eight hundred</item>
+        <item>nine hundred</item>
     </string-array>
     <string-array name="thousands">
-        <item>тысяча</item>
+        <item>one thousand</item>
     </string-array>
 </resources>

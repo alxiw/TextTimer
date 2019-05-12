@@ -6,16 +6,14 @@ import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_timer.button
-import kotlinx.android.synthetic.main.activity_timer.textView
 import ru.mail.track.android.alxiw.texttimer.tools.CountTextFormatter
 
 class TimerActivity : AppCompatActivity() {
 
-    private val startButtonText: String = "START"
-    private val stopButtonText: String = "STOP"
+    private lateinit var startButtonText: String
+    private lateinit var stopButtonText: String
 
-    private val maxTimerCount = 1_000_000L
+    private val maxTimerCount = 1000_000L
     private val timerCountDownInterval: Long = 1_000L
 
     private var timerCount: Long = 0L
@@ -28,13 +26,10 @@ class TimerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
-        timeCountFormatter = CountTextFormatter(
-            resources.getStringArray(R.array.units),
-            resources.getStringArray(R.array.teens),
-            resources.getStringArray(R.array.tens),
-            resources.getStringArray(R.array.hundreds),
-            resources.getStringArray(R.array.thousands)
-            )
+        startButtonText = getString(R.string.start)
+        stopButtonText = getString(R.string.stop)
+
+        timeCountFormatter = CountTextFormatter(resources)
 
         val button = this.findViewById<View>(R.id.button) as Button
         val textView = this.findViewById<View>(R.id.textView) as TextView
@@ -87,6 +82,10 @@ class TimerActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        val button = this.findViewById<View>(R.id.button) as Button
+        val textView = this.findViewById<View>(R.id.textView) as TextView
+
         textView.text = timeCountFormatter.formatCountToText(timerCount.toInt())
         button.let {
             if (it.text == stopButtonText) {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Text Timer</string>
+    <string name="start" translatable="true">старт</string>
+    <string name="stop" translatable="true">стоп</string>
+
+    <string-array name="units">
+        <item>один</item>
+        <item>два</item>
+        <item>три</item>
+        <item>четыре</item>
+        <item>пять</item>
+        <item>шесть</item>
+        <item>семь</item>
+        <item>восемь</item>
+        <item>девять</item>
+    </string-array>
+    <string-array name="teens">
+        <item>одиннадцать</item>
+        <item>двенадцать</item>
+        <item>тринадцать</item>
+        <item>четырнадцать</item>
+        <item>пятнадцать</item>
+        <item>шестнадцать</item>
+        <item>семнадцать</item>
+        <item>восемнадцать</item>
+        <item>девятнадцать</item>
+    </string-array>
+    <string-array name="tens">
+        <item>десять</item>
+        <item>двадцать</item>
+        <item>тридцать</item>
+        <item>сорок</item>
+        <item>пятьдесят</item>
+        <item>шестьдесят</item>
+        <item>семьдесят</item>
+        <item>восемьдесят</item>
+        <item>девяносто</item>
+    </string-array>
+    <string-array name="hundreds">
+        <item>сто</item>
+        <item>двести</item>
+        <item>триста</item>
+        <item>четыреста</item>
+        <item>пятьсот</item>
+        <item>шестьсот</item>
+        <item>семьсот</item>
+        <item>восемьсот</item>
+        <item>девятьсот</item>
+    </string-array>
+    <string-array name="thousands">
+        <item>тысяча</item>
+    </string-array>
+</resources>

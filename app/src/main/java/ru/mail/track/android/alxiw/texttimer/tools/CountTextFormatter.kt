@@ -1,14 +1,15 @@
 package ru.mail.track.android.alxiw.texttimer.tools
 
-class CountTextFormatter(
-    private val units: Array<String>,
-    private val teens: Array<String>,
-    private val tens: Array<String>,
-    private val hundreds: Array<String>,
-    private val thousands: Array<String>
-) {
+import android.content.res.Resources
+import ru.mail.track.android.alxiw.texttimer.R
 
-    private val separator = " "
+class CountTextFormatter(resources: Resources) {
+
+    private val units: Array<String> = resources.getStringArray(R.array.units)
+    private val teens: Array<String> = resources.getStringArray(R.array.teens)
+    private val tens: Array<String> = resources.getStringArray(R.array.tens)
+    private val hundreds: Array<String> = resources.getStringArray(R.array.hundreds)
+    private val thousands: Array<String> = resources.getStringArray(R.array.thousands)
 
     fun formatCountToText(timerCount: Int): String {
         var result = ""
@@ -26,17 +27,17 @@ class CountTextFormatter(
         }
 
         if (timerCount / 10 % 10 > 1) {
-            if (result.isNotEmpty()) result += separator
+            if (result.isNotEmpty()) result = "$result "
             result += tens[timerCount / 10 % 10 - 1]
         }
 
         if (timerCount / 10 % 10 == 1) {
-            if (result.isNotEmpty()) result += separator
+            if (result.isNotEmpty()) result = "$result "
             result += if (timerCount % 10 == 0) tens[0] else teens[timerCount % 10 - 1]
         }
 
         if (timerCount % 10 != 0 && timerCount / 10 % 10 != 1) {
-            if (result.isNotEmpty()) result += separator
+            if (result.isNotEmpty()) result = "$result "
             result += units[timerCount % 10 - 1]
         }
 

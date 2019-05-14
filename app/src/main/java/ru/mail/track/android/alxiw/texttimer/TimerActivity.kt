@@ -72,7 +72,7 @@ class TimerActivity : AppCompatActivity() {
         if (savedInstanceState != null) {
             timerCount = savedInstanceState.getLong(this.getString(R.string.timer_count), 0L)
             textView.text = timeCountFormatter.formatCountToText(timerCount.toInt())
-            buttonText = savedInstanceState.getString(this.getString(R.string.button_text), startButtonText)
+            buttonText = if (savedInstanceState.getString(this.getString(R.string.button_text), startButtonText) == "1") getString(R.string.stop) else getString(R.string.start)
             button.text = buttonText
         } else {
             buttonText = startButtonText
@@ -101,7 +101,7 @@ class TimerActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         outState?.putLong(this.getString(R.string.timer_count), timerCount)
-        outState?.putString(this.getString(R.string.button_text), buttonText)
+        outState?.putString(this.getString(R.string.button_text), if (buttonText == getString(R.string.stop)) "1" else "0")
         super.onSaveInstanceState(outState)
     }
 }

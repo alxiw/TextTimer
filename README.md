@@ -2,7 +2,7 @@
 
 <img align="right" width="120" src="img/sample-icon.png">
 
-The project is a simple Android application with two activities developed in [Kotlin](https://github.com/JetBrains/kotlin) as a training task at the very start of the Android App Development Course by the [Technotrack](https://track.mail.ru/) educational project. The application represents a stopwatch, which counts upwards from zero for measuring elapsed time, showing the time in the way how we pronounce it, e.g. _forty four_ for 44. The interface is available in English and in Russian. Appropriate language will be applied, depending on your system language.
+The project is a simple Android application with two activities developed in [Kotlin](https://github.com/JetBrains/kotlin) as a training task at the very start of the Android App Development Course by the [Technotrack](https://track.mail.ru/) educational project. The application represents a stopwatch, which counts upwards from zero for measuring elapsed time, showing the time in the way how we pronounce it, e.g. `one hundred forty-four` for 144. The interface is available in German, Russian and English by deafult. Appropriate language will be applied, depending on your system language.
 
 ## Usage
 
